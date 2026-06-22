@@ -151,3 +151,14 @@
   from { opacity: 0; transform: translateY(-5px); }
   to   { opacity: 1; transform: translateY(0); }
 }
+
+.mensaje-carrito {
+  background-color: #1a1a1a;
+  color: #c9a96e;
+  text-align: center;
+  padding: 12px;
+  font-size: 0.75rem;
+  letter-spacing: 2px;
+  margin-bottom: 20px;
+  animation: fadeIn 0.3s ease;
+}

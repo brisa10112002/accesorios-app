@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterOutlet, RouterLink } from '@angular/router';
+import { CarritoService } from './services/carrito';
 
 @Component({
   selector: 'app-root',
@@ -9,4 +10,5 @@ import { RouterOutlet, RouterLink } from '@angular/router';
 })
 export class App {
   title = 'accesorios-app';
+  carritoService = inject(CarritoService);
 }

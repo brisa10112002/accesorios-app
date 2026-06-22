@@ -2,7 +2,8 @@
   <span style="color: #c9a96e; font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; letter-spacing: 4px; margin-right: 30px;">MAJOMO</span>
   <a routerLink="/principal">Inicio</a>
   <a routerLink="/listado">Catálogo</a>
-  <a routerLink="/login" class="nav-login">Iniciar sesión</a>
+  <a routerLink="/login">Iniciar sesión</a>
+  <a routerLink="/carrito" class="nav-carrito">🛒 Carrito ({{ carritoService.items().length }})</a>
 </nav>
 
 <router-outlet></router-outlet>

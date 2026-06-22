@@ -4,6 +4,12 @@
     <h2 class="listado-titulo">Catálogo de Accesorios</h2>
   </div>
 
+  @if (mensajeAgregado) {
+  <div class="mensaje-carrito">
+    {{ mensajeAgregado }}
+  </div>
+  }
+  
   <div class="filtros">
     @for (cat of categorias; track cat) {
       <button
@@ -35,7 +41,7 @@
             @if (accesorioSeleccionado?.id === accesorio.id) {
               <div class="card-detalle">
                 <p>{{ accesorio.descripcion }}</p>
-                <button class="btn-comprar">Comprar</button>
+                <button class="btn-comprar" (click)="$event.stopPropagation(); agregar(accesorio)">Agregar al carrito</button>
               </div>
             }
           </div>
