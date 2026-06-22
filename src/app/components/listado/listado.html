@@ -1,0 +1,46 @@
+<div class="listado-container">
+  <div class="listado-header">
+    <p class="listado-sub">Descubrí nuestra selección</p>
+    <h2 class="listado-titulo">Catálogo de Accesorios</h2>
+  </div>
+
+  <div class="filtros">
+    @for (cat of categorias; track cat) {
+      <button
+        class="filtro-btn"
+        [class.activo]="categoriaActiva === cat"
+        (click)="filtrar(cat)">
+        {{ cat }}
+      </button>
+    }
+  </div>
+
+  <div class="row">
+    @for (accesorio of accesorios; track accesorio.id) {
+      <div class="col-md-4 mb-5">
+        <div class="card-accesorio" (click)="verDetalle(accesorio)">
+          <div class="card-img-wrapper">
+            <img [src]="accesorio.imagen" [alt]="accesorio.nombre">
+            @if (accesorio.stock === 0) {
+              <span class="badge-agotado">AGOTADO</span>
+            }
+          </div>
+          <div class="card-info">
+            <p class="card-categoria">{{ accesorio.categoria | uppercase }}</p>
+            <h5 class="card-nombre">{{ accesorio.nombre }}</h5>
+            <p class="card-precio">{{ accesorio.precio | currency:'ARS':'symbol':'1.0-0' }}</p>
+            @if (accesorio.stock > 0) {
+              <p class="card-stock">{{ accesorio.stock }} unidades disponibles</p>
+            }
+            @if (accesorioSeleccionado?.id === accesorio.id) {
+              <div class="card-detalle">
+                <p>{{ accesorio.descripcion }}</p>
+                <button class="btn-comprar">Comprar</button>
+              </div>
+            }
+          </div>
+        </div>
+      </div>
+    }
+  </div>
+</div>

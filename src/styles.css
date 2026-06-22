@@ -1,1 +1,42 @@
 /* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Montserrat:wght@300;400;500&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  background-color: #f9f6f2;
+  color: #1a1a1a;
+}
+
+h1, h2, h3, h4, h5 {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 400;
+  letter-spacing: 2px;
+}
+
+nav {
+  background-color: #1a1a1a;
+  padding: 18px 40px;
+  display: flex;
+  gap: 30px;
+  align-items: center;
+}
+
+nav a {
+  color: #f9f6f2;
+  text-decoration: none;
+  font-size: 0.75rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  font-family: 'Montserrat', sans-serif;
+  transition: color 0.3s;
+}
+
+nav a:hover {
+  color: #c9a96e;
+}
