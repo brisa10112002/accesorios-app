@@ -3,28 +3,39 @@
     <p class="login-sub">Bienvenida</p>
     <h2 class="login-titulo">Iniciá sesión</h2>
 
-    @if (enviado) {
+    @if (error()) {
       <div class="login-mensaje">
-        ¡Sesión iniciada correctamente!
+        Usuario o contraseña incorrectos
       </div>
     }
 
-    <div class="login-form">
+    <form class="login-form" [formGroup]="form" (ngSubmit)="iniciarSesion()">
       <div class="form-group">
-        <label>Email</label>
-        <input type="email" [(ngModel)]="email" placeholder="tu@email.com">
+        <label for="usuario">Usuario</label>
+        <input id="usuario" type="text" formControlName="usuario" placeholder="admin o cliente">
+        @if (form.controls.usuario.touched && form.controls.usuario.hasError('required')) {
+          <p class="form-error">Ingresá tu usuario</p>
+        }
       </div>
 
       <div class="form-group">
-        <label>Contraseña</label>
-        <input type="password" [(ngModel)]="password" placeholder="••••••••">
+        <label for="contrasena">Contraseña</label>
+        <input id="contrasena" type="password" formControlName="contrasena" placeholder="••••••••">
+        @if (form.controls.contrasena.touched && form.controls.contrasena.hasError('required')) {
+          <p class="form-error">Ingresá tu contraseña</p>
+        }
+        @if (form.controls.contrasena.touched && form.controls.contrasena.hasError('minlength')) {
+          <p class="form-error">Tiene que tener al menos 4 caracteres</p>
+        }
       </div>
 
-      <button class="btn-ingresar" (click)="iniciarSesion()">Ingresar</button>
+      <button type="submit" class="btn-ingresar">Ingresar</button>
+
+      <p class="login-demo">Usuarios de prueba: admin / 1234 · cliente / 1234</p>
 
       <p class="login-volver">
         <a routerLink="/principal">Volver al inicio</a>
       </p>
-    </div>
+    </form>
   </div>
-</div>
+</div>

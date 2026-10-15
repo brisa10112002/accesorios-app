@@ -98,4 +98,15 @@
   color: #c9a96e;
   text-decoration: none;
   letter-spacing: 1px;
-}
+}
+.form-error {
+  color: #b3261e;
+  font-size: 0.7rem;
+  margin-top: 6px;
+}
+
+.login-demo {
+  margin-top: 20px;
+  font-size: 0.7rem;
+  color: #888;
+}

@@ -40,3 +40,26 @@ nav a {
 nav a:hover {
   color: #c9a96e;
 }
+
+.nav-usuario {
+  color: #c9a96e;
+  font-size: 0.75rem;
+  letter-spacing: 2px;
+  margin-left: auto;
+}
+
+.nav-salir {
+  background: none;
+  border: none;
+  color: #f9f6f2;
+  font-size: 0.75rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  font-family: 'Montserrat', sans-serif;
+  cursor: pointer;
+  padding: 0;
+}
+
+.nav-salir:hover {
+  color: #c9a96e;
+}

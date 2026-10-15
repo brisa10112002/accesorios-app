@@ -2,9 +2,16 @@
   <span style="color: #c9a96e; font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; letter-spacing: 4px; margin-right: 30px;">MAJOMO</span>
   <a routerLink="/principal">Inicio</a>
   <a routerLink="/catalogo">Catálogo</a>
-  <a routerLink="/admin">Admin</a>
-  <a routerLink="/login">Iniciar sesión</a>
+  @if (authService.getRol() === 'admin') {
+    <a routerLink="/admin">Admin</a>
+  }
+  @if (authService.estaLogueado()) {
+    <span class="nav-usuario">Hola, {{ authService.usuario()?.nombre }}</span>
+    <button class="nav-salir" (click)="cerrarSesion()">Cerrar sesión</button>
+  } @else {
+    <a routerLink="/login">Iniciar sesión</a>
+  }
   <a routerLink="/carrito" class="nav-carrito">🛒 Carrito ({{ carritoService.items().length }})</a>
 </nav>
 
-<router-outlet></router-outlet>
+<router-outlet></router-outlet>
