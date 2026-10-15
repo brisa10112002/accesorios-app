@@ -42,3 +42,7 @@ __screenshots__/
 # System files
 .DS_Store
 Thumbs.db
+
+# Archivos que no son del proyecto
+public/imagenes/Tool Kit*
+public/imagenes/Conformacion-de-un-prompt*

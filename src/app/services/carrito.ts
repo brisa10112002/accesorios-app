@@ -11,11 +11,11 @@ export class CarritoService {
     this.items.update(lista => [...lista, accesorio]);
   }
 
-  eliminar(id: number) {
+  eliminar(id: string) {
     this.items.update(lista => lista.filter(a => a.id !== id));
   }
 
   total() {
     return this.items().reduce((acc, a) => acc + a.precio, 0);
   }
-}
+}

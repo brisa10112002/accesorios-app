@@ -1,5 +1,5 @@
 export interface Accesorio {
-  id: number;
+  id: string;
   nombre: string;
   categoria: string;
   precio: number;
