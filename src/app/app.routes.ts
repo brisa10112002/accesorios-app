@@ -1,13 +1,21 @@
 import { Routes } from '@angular/router';
-import { Principal } from './components/principal/principal';
-import { Listado } from './components/listado/listado';
-import { Login } from './components/login/login';
-import { Carrito } from './components/carrito/carrito';
 
 export const routes: Routes = [
-  { path: 'principal', component: Principal },
-  { path: 'listado', component: Listado },
-  { path: 'login', component: Login },
-  { path: 'carrito', component: Carrito },
+  {
+    path: 'principal',
+    loadComponent: () => import('./features/inicio/principal').then(m => m.Principal)
+  },
+  {
+    path: 'catalogo',
+    loadChildren: () => import('./features/catalogo/catalogo.routes').then(m => m.CATALOGO_ROUTES)
+  },
+  {
+    path: 'login',
+    loadComponent: () => import('./features/auth/login').then(m => m.Login)
+  },
+  {
+    path: 'carrito',
+    loadComponent: () => import('./features/carrito/carrito').then(m => m.Carrito)
+  },
   { path: '', redirectTo: 'principal', pathMatch: 'full' },
 ];

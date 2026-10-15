@@ -1,8 +1,8 @@
 import { Component, OnInit, computed, inject, signal } from '@angular/core';
 import { CurrencyPipe, UpperCasePipe } from '@angular/common';
-import { AccesoriosService } from '../../services/accesorios';
-import { CarritoService } from '../../services/carrito';
-import { Accesorio } from '../../models/accesorios';
+import { AccesoriosService } from '../../../shared/services/accesorios';
+import { CarritoService } from '../../../shared/services/carrito';
+import { Accesorio } from '../../../shared/models/accesorios';
 
 @Component({
   selector: 'app-listado',
