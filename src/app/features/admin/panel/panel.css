@@ -1,0 +1,64 @@
+.admin-container {
+  padding: 60px 40px;
+  background-color: #f9f6f2;
+  min-height: 100vh;
+}
+
+.admin-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.admin-sub {
+  color: #c9a96e;
+  font-size: 0.75rem;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.admin-titulo {
+  font-size: 2.5rem;
+  letter-spacing: 3px;
+  color: #1a1a1a;
+}
+
+.admin-barra {
+  max-width: 1000px;
+  margin: 0 auto 20px;
+  text-align: right;
+}
+
+.btn-principal {
+  display: inline-block;
+  background-color: #1a1a1a;
+  color: #f9f6f2;
+  padding: 12px 24px;
+  font-size: 0.7rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: background-color 0.3s;
+}
+
+.btn-principal:hover {
+  background-color: #c9a96e;
+  color: #1a1a1a;
+}
+
+.admin-tabla {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: table;
+}
+
+.admin-img {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+}
+
+.admin-estado {
+  text-align: center;
+  color: #555;
+}

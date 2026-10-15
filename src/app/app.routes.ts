@@ -10,6 +10,10 @@ export const routes: Routes = [
     loadChildren: () => import('./features/catalogo/catalogo.routes').then(m => m.CATALOGO_ROUTES)
   },
   {
+    path: 'admin',
+    loadChildren: () => import('./features/admin/admin.routes').then(m => m.ADMIN_ROUTES)
+  },
+  {
     path: 'login',
     loadComponent: () => import('./features/auth/login').then(m => m.Login)
   },
