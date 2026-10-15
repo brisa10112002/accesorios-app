@@ -47,6 +47,7 @@
                 <div class="card-detalle">
                   <p>{{ accesorio.descripcion }}</p>
                   <button class="btn-comprar" (click)="$event.stopPropagation(); agregar(accesorio)">Agregar al carrito</button>
+                  <a class="link-detalle" [routerLink]="['/catalogo', accesorio.id]" (click)="$event.stopPropagation()">Ver detalle</a>
                 </div>
               }
             </div>

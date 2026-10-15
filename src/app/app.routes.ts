@@ -22,4 +22,8 @@ export const routes: Routes = [
     loadComponent: () => import('./features/carrito/carrito').then(m => m.Carrito)
   },
   { path: '', redirectTo: 'principal', pathMatch: 'full' },
+  {
+    path: '**',
+    loadComponent: () => import('./features/no-encontrado/no-encontrado').then(m => m.NoEncontrado)
+  },
 ];

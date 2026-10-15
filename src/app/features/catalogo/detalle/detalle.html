@@ -1,0 +1,35 @@
+<div class="detalle-container">
+  <a routerLink="/catalogo" class="detalle-volver">← Volver al catálogo</a>
+
+  @if (cargando()) {
+    <p class="detalle-estado">Cargando accesorio...</p>
+  } @else if (error()) {
+    <p class="detalle-estado">No encontramos este accesorio.</p>
+  } @else {
+    @if (accesorio(); as accesorio) {
+      @if (mensajeAgregado()) {
+        <div class="detalle-mensaje">{{ mensajeAgregado() }}</div>
+      }
+
+      <div class="detalle-box">
+        <div class="detalle-img">
+          <img [src]="accesorio.imagen" [alt]="accesorio.nombre">
+        </div>
+
+        <div class="detalle-info">
+          <p class="detalle-categoria">{{ accesorio.categoria | uppercase }}</p>
+          <h2 class="detalle-nombre">{{ accesorio.nombre }}</h2>
+          <p class="detalle-precio">{{ accesorio.precio | currency:'ARS':'symbol':'1.0-0' }}</p>
+          <p class="detalle-descripcion">{{ accesorio.descripcion }}</p>
+
+          @if (accesorio.stock > 0) {
+            <p class="detalle-stock">{{ accesorio.stock }} unidades disponibles</p>
+            <button class="btn-comprar" (click)="agregar(accesorio)">Agregar al carrito</button>
+          } @else {
+            <p class="detalle-agotado">AGOTADO</p>
+          }
+        </div>
+      </div>
+    }
+  }
+</div>

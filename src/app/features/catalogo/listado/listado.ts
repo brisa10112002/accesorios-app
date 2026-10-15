@@ -1,12 +1,13 @@
 import { Component, OnInit, computed, inject, signal } from '@angular/core';
 import { CurrencyPipe, UpperCasePipe } from '@angular/common';
+import { RouterLink } from '@angular/router';
 import { AccesoriosService } from '../../../shared/services/accesorios';
 import { CarritoService } from '../../../shared/services/carrito';
 import { Accesorio } from '../../../shared/models/accesorios';
 
 @Component({
   selector: 'app-listado',
-  imports: [CurrencyPipe, UpperCasePipe],
+  imports: [CurrencyPipe, UpperCasePipe, RouterLink],
   templateUrl: './listado.html',
   styleUrl: './listado.css'
 })

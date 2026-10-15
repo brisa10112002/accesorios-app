@@ -5,4 +5,8 @@ export const CATALOGO_ROUTES: Routes = [
     path: '',
     loadComponent: () => import('./listado/listado').then(m => m.Listado)
   },
+  {
+    path: ':id',
+    loadComponent: () => import('./detalle/detalle').then(m => m.Detalle)
+  },
 ];

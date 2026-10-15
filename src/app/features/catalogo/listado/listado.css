@@ -161,4 +161,14 @@
   letter-spacing: 2px;
   margin-bottom: 20px;
   animation: fadeIn 0.3s ease;
-}
+}
+.link-detalle {
+  display: block;
+  text-align: center;
+  margin-top: 10px;
+  color: #c9a96e;
+  font-size: 0.7rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-decoration: none;
+}
