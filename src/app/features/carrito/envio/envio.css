@@ -1,0 +1,69 @@
+.envio-box {
+  background-color: #fff;
+  padding: 30px;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.envio-titulo {
+  font-size: 1.6rem;
+  color: #1a1a1a;
+  margin-bottom: 16px;
+}
+
+.envio-fila {
+  display: flex;
+  gap: 16px;
+}
+
+.envio-fila mat-form-field {
+  flex: 1;
+}
+
+.envio-total {
+  text-align: right;
+  letter-spacing: 2px;
+  margin: 10px 0;
+}
+
+.envio-acciones {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+.btn-cancelar,
+.btn-confirmar {
+  padding: 12px 24px;
+  font-size: 0.7rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  border: 1px solid #1a1a1a;
+  font-family: 'Montserrat', sans-serif;
+  cursor: pointer;
+}
+
+.btn-cancelar {
+  background-color: transparent;
+  color: #1a1a1a;
+}
+
+.btn-confirmar {
+  background-color: #1a1a1a;
+  color: #f9f6f2;
+  transition: background-color 0.3s;
+}
+
+.btn-confirmar:hover {
+  background-color: #c9a96e;
+  color: #1a1a1a;
+}
+
+@media (max-width: 600px) {
+  .envio-fila {
+    flex-direction: column;
+    gap: 0;
+  }
+}

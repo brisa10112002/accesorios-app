@@ -24,9 +24,16 @@
       }
     </div>
 
-    <div class="carrito-total">
-      <p>Total: <strong>{{ carritoService.total() | currency:'ARS':'symbol':'1.0-0' }}</strong></p>
-      <button class="btn-comprar">Finalizar compra</button>
-    </div>
+    @if (mostrarEnvio()) {
+      <app-envio
+        [total]="carritoService.total()"
+        (confirmar)="finalizarCompra($event)"
+        (cancelar)="mostrarEnvio.set(false)" />
+    } @else {
+      <div class="carrito-total">
+        <p>Total: <strong>{{ carritoService.total() | currency:'ARS':'symbol':'1.0-0' }}</strong></p>
+        <button class="btn-comprar" (click)="mostrarEnvio.set(true)">Finalizar compra</button>
+      </div>
+    }
   }
 </div>

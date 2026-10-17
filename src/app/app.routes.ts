@@ -1,4 +1,6 @@
 import { Routes } from '@angular/router';
+import { authGuard } from './shared/guards/auth.guard';
+import { adminGuard } from './shared/guards/admin.guard';
 
 export const routes: Routes = [
   {
@@ -11,6 +13,7 @@ export const routes: Routes = [
   },
   {
     path: 'admin',
+    canMatch: [adminGuard],
     loadChildren: () => import('./features/admin/admin.routes').then(m => m.ADMIN_ROUTES)
   },
   {
@@ -19,6 +22,7 @@ export const routes: Routes = [
   },
   {
     path: 'carrito',
+    canActivate: [authGuard],
     loadComponent: () => import('./features/carrito/carrito').then(m => m.Carrito)
   },
   { path: '', redirectTo: 'principal', pathMatch: 'full' },

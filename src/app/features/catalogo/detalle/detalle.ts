@@ -4,10 +4,12 @@ import { ActivatedRoute, RouterLink } from '@angular/router';
 import { AccesoriosService } from '../../../shared/services/accesorios';
 import { CarritoService } from '../../../shared/services/carrito';
 import { Accesorio } from '../../../shared/models/accesorios';
+import { EstadoStockPipe } from '../../../shared/pipes/estado-stock.pipe';
+import { DestacarStockDirective } from '../../../shared/directives/destacar-stock.directive';
 
 @Component({
   selector: 'app-detalle',
-  imports: [CurrencyPipe, UpperCasePipe, RouterLink],
+  imports: [CurrencyPipe, UpperCasePipe, RouterLink, EstadoStockPipe, DestacarStockDirective],
   templateUrl: './detalle.html',
   styleUrl: './detalle.css'
 })

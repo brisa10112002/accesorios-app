@@ -1,0 +1,76 @@
+<form class="envio-box" [formGroup]="form" (ngSubmit)="enviar()">
+  <h3 class="envio-titulo">Datos de envío</h3>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Nombre y apellido</mat-label>
+    <input matInput formControlName="nombre">
+    @if (form.controls.nombre.hasError('required')) {
+      <mat-error>El nombre es obligatorio</mat-error>
+    }
+    @if (form.controls.nombre.hasError('minlength')) {
+      <mat-error>Tiene que tener al menos 3 letras</mat-error>
+    }
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Dirección</mat-label>
+    <input matInput formControlName="direccion" placeholder="Calle y número">
+    @if (form.controls.direccion.hasError('required')) {
+      <mat-error>La dirección es obligatoria</mat-error>
+    }
+  </mat-form-field>
+
+  <div class="envio-fila">
+    <mat-form-field appearance="outline">
+      <mat-label>Provincia</mat-label>
+      <mat-select formControlName="provincia">
+        @for (provincia of provincias(); track provincia.id) {
+          <mat-option [value]="provincia.id">{{ provincia.nombre }}</mat-option>
+        }
+      </mat-select>
+      @if (cargandoProvincias()) {
+        <mat-hint>Cargando provincias...</mat-hint>
+      } @else if (provincias().length === 0) {
+        <mat-hint>No se pudieron cargar las provincias</mat-hint>
+      }
+      @if (form.controls.provincia.hasError('required')) {
+        <mat-error>Elegí una provincia</mat-error>
+      }
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Localidad</mat-label>
+      <mat-select formControlName="localidad">
+        @for (localidad of localidades(); track localidad.id) {
+          <mat-option [value]="localidad.id">{{ localidad.nombre }}</mat-option>
+        }
+      </mat-select>
+      @if (cargandoLocalidades()) {
+        <mat-hint>Cargando localidades...</mat-hint>
+      } @else if (!form.controls.provincia.value) {
+        <mat-hint>Primero elegí una provincia</mat-hint>
+      }
+      @if (form.controls.localidad.hasError('required')) {
+        <mat-error>Elegí una localidad</mat-error>
+      }
+    </mat-form-field>
+  </div>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Código postal</mat-label>
+    <input matInput formControlName="codigoPostal" maxlength="4">
+    @if (form.controls.codigoPostal.hasError('required')) {
+      <mat-error>El código postal es obligatorio</mat-error>
+    }
+    @if (form.controls.codigoPostal.hasError('pattern')) {
+      <mat-error>Tiene que tener 4 números</mat-error>
+    }
+  </mat-form-field>
+
+  <p class="envio-total">Total a pagar: <strong>{{ total() | currency:'ARS':'symbol':'1.0-0' }}</strong></p>
+
+  <div class="envio-acciones">
+    <button type="button" class="btn-cancelar" (click)="cancelar.emit()">Volver</button>
+    <button type="submit" class="btn-confirmar">Confirmar compra</button>
+  </div>
+</form>

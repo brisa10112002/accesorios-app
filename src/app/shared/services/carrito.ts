@@ -15,6 +15,10 @@ export class CarritoService {
     this.items.update(lista => lista.filter(a => a.id !== id));
   }
 
+  vaciar() {
+    this.items.set([]);
+  }
+
   total() {
     return this.items().reduce((acc, a) => acc + a.precio, 0);
   }

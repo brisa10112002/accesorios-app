@@ -41,7 +41,7 @@
               <h5 class="card-nombre">{{ accesorio.nombre }}</h5>
               <p class="card-precio">{{ accesorio.precio | currency:'ARS':'symbol':'1.0-0' }}</p>
               @if (accesorio.stock > 0) {
-                <p class="card-stock">{{ accesorio.stock }} unidades disponibles</p>
+                <p class="card-stock" [appDestacarStock]="accesorio.stock">{{ accesorio.stock | estadoStock }}</p>
               }
               @if (accesorioSeleccionado()?.id === accesorio.id) {
                 <div class="card-detalle">
