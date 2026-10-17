@@ -1,8 +1,7 @@
-<div class="form-container">
-  <div class="form-header">
-    <p class="form-sub">Panel de administración</p>
-    <h2 class="form-titulo">{{ idEditar ? 'Editar accesorio' : 'Nuevo accesorio' }}</h2>
-  </div>
+<div class="pagina">
+  <a routerLink="/admin" class="volver">← Volver a la lista</a>
+  <h1 class="pagina-titulo">{{ idEditar ? 'Editar accesorio' : 'Nuevo accesorio' }}</h1>
+  <p class="pagina-bajada">Todos los campos son obligatorios.</p>
 
   <form class="form-box" [formGroup]="form" (ngSubmit)="guardar()">
 
@@ -75,8 +74,8 @@
     </mat-form-field>
 
     <div class="form-acciones">
-      <a routerLink="/admin" class="btn-cancelar">Cancelar</a>
-      <button type="submit" class="btn-guardar" [disabled]="guardando()">
+      <a routerLink="/admin" class="btn btn-borde">Cancelar</a>
+      <button type="submit" class="btn" [disabled]="guardando()">
         {{ guardando() ? 'Guardando...' : 'Guardar' }}
       </button>
     </div>

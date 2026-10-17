@@ -1,33 +1,8 @@
-.form-container {
-  padding: 60px 40px;
-  background-color: #f9f6f2;
-  min-height: 100vh;
-}
-
-.form-header {
-  text-align: center;
-  margin-bottom: 40px;
-}
-
-.form-sub {
-  color: #c9a96e;
-  font-size: 0.75rem;
-  letter-spacing: 4px;
-  text-transform: uppercase;
-  margin-bottom: 10px;
-}
-
-.form-titulo {
-  font-size: 2.5rem;
-  letter-spacing: 3px;
-  color: #1a1a1a;
-}
-
 .form-box {
-  max-width: 600px;
-  margin: 0 auto;
-  background-color: #fff;
-  padding: 40px;
+  max-width: 640px;
+  border: 1px solid var(--linea);
+  border-radius: 0;
+  padding: 36px;
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -49,42 +24,21 @@
   margin-top: 16px;
 }
 
-.btn-cancelar,
-.btn-guardar {
-  padding: 12px 24px;
-  font-size: 0.7rem;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  text-decoration: none;
-  border: 1px solid #1a1a1a;
-  font-family: 'Montserrat', sans-serif;
-  cursor: pointer;
-}
-
-.btn-cancelar {
-  color: #1a1a1a;
-  background-color: transparent;
-}
-
-.btn-guardar {
-  background-color: #1a1a1a;
-  color: #f9f6f2;
-  transition: background-color 0.3s;
-}
-
-.btn-guardar:hover {
-  background-color: #c9a96e;
-  color: #1a1a1a;
-}
-
-.btn-guardar:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
-
 @media (max-width: 600px) {
+  .form-box {
+    padding: 22px;
+  }
+
   .form-fila {
     flex-direction: column;
     gap: 0;
   }
+}
+
+.volver {
+  display: inline-block;
+  color: var(--negro);
+  font-weight: 600;
+  text-decoration: none;
+  margin-bottom: 20px;
 }

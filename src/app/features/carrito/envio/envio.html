@@ -71,6 +71,6 @@
 
   <div class="envio-acciones">
     <button type="button" class="btn-cancelar" (click)="cancelar.emit()">Volver</button>
-    <button type="submit" class="btn-confirmar">Confirmar compra</button>
+    <button type="submit" class="btn-confirmar" [disabled]="procesando()">{{ procesando() ? 'Confirmando...' : 'Confirmar compra' }}</button>
   </div>
 </form>

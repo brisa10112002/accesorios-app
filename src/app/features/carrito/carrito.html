@@ -1,25 +1,29 @@
-<div class="carrito-container">
-  <div class="carrito-header">
-    <p class="carrito-sub">Tu selección</p>
-    <h2 class="carrito-titulo">Carrito</h2>
-  </div>
+<div class="pagina carrito">
+  <h1 class="pagina-titulo">Tu carrito</h1>
 
   @if (carritoService.items().length === 0) {
     <div class="carrito-vacio">
-      <p>Tu carrito está vacío.</p>
-      <a routerLink="/catalogo" class="btn-seguir">Ver catálogo</a>
+      <p>Todavía no agregaste nada. Mirá el catálogo y sumá lo que te guste.</p>
+      <a routerLink="/catalogo" class="btn">Ver catálogo</a>
     </div>
   } @else {
+    <p class="pagina-bajada">{{ carritoService.cantidadTotal() }} {{ carritoService.cantidadTotal() === 1 ? 'producto' : 'productos' }}</p>
+
     <div class="carrito-items">
-      @for (item of carritoService.items(); track item.id) {
+      @for (item of carritoService.items(); track item.accesorio.id) {
         <div class="carrito-item">
-          <img [src]="item.imagen" [alt]="item.nombre">
+          <img [src]="item.accesorio.imagen" [alt]="item.accesorio.nombre">
           <div class="item-info">
-            <p class="item-nombre">{{ item.nombre }}</p>
-            <p class="item-categoria">{{ item.categoria }}</p>
-            <p class="item-precio">{{ item.precio | currency:'ARS':'symbol':'1.0-0' }}</p>
+            <p class="item-nombre">{{ item.accesorio.nombre }}</p>
+            <p class="item-categoria">{{ item.accesorio.precio | currency:'ARS':'symbol':'1.0-0' }} c/u</p>
+            <div class="item-cantidad">
+              <button (click)="carritoService.restar(item.accesorio.id)" aria-label="Restar uno">−</button>
+              <span>{{ item.cantidad }}</span>
+              <button (click)="sumar(item.accesorio)" [disabled]="item.cantidad >= item.accesorio.stock" aria-label="Sumar uno">+</button>
+            </div>
           </div>
-          <button class="btn-eliminar" (click)="carritoService.eliminar(item.id)">✕</button>
+          <p class="item-precio">{{ item.accesorio.precio * item.cantidad | currency:'ARS':'symbol':'1.0-0' }}</p>
+          <button class="btn-eliminar" (click)="carritoService.eliminar(item.accesorio.id)" [attr.aria-label]="'Quitar ' + item.accesorio.nombre">✕</button>
         </div>
       }
     </div>
@@ -27,13 +31,14 @@
     @if (mostrarEnvio()) {
       <app-envio
         [total]="carritoService.total()"
+        [procesando]="procesando()"
         (confirmar)="finalizarCompra($event)"
         (cancelar)="mostrarEnvio.set(false)" />
     } @else {
       <div class="carrito-total">
-        <p>Total: <strong>{{ carritoService.total() | currency:'ARS':'symbol':'1.0-0' }}</strong></p>
-        <button class="btn-comprar" (click)="mostrarEnvio.set(true)">Finalizar compra</button>
+        <p>Total <strong>{{ carritoService.total() | currency:'ARS':'symbol':'1.0-0' }}</strong></p>
+        <button class="btn" (click)="mostrarEnvio.set(true)">Finalizar compra</button>
       </div>
     }
   }
-</div>
+</div>

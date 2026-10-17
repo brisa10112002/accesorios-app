@@ -1,20 +1,20 @@
-<div class="admin-container">
-  <div class="admin-header">
-    <p class="admin-sub">Panel de administración</p>
-    <h2 class="admin-titulo">Accesorios</h2>
-  </div>
-
+<div class="pagina">
   <div class="admin-barra">
-    <a routerLink="/admin/nuevo" class="btn-principal">+ Nuevo accesorio</a>
+    <div>
+      <h1 class="pagina-titulo">Administrar accesorios</h1>
+      <p class="pagina-bajada">Creá, editá o eliminá los productos del catálogo.</p>
+    </div>
+    <a routerLink="/admin/nuevo" class="btn">Nuevo accesorio</a>
   </div>
 
   @if (cargando()) {
-    <p class="admin-estado">Cargando accesorios...</p>
+    <p class="estado">Cargando accesorios...</p>
   } @else if (error()) {
-    <p class="admin-estado">No se pudieron cargar los accesorios.</p>
+    <p class="estado">No se pudieron cargar los accesorios.</p>
   } @else if (accesorios().length === 0) {
-    <p class="admin-estado">No hay accesorios cargados.</p>
+    <p class="estado">No hay accesorios cargados.</p>
   } @else {
+    <div class="admin-tabla-contenedor">
     <table mat-table [dataSource]="accesorios()" class="admin-tabla">
 
       <ng-container matColumnDef="imagen">
@@ -59,5 +59,6 @@
       <tr mat-header-row *matHeaderRowDef="columnas"></tr>
       <tr mat-row *matRowDef="let fila; columns: columnas"></tr>
     </table>
+    </div>
   }
 </div>

@@ -1,5 +1,11 @@
-/* You can add global styles to this file, and also import other style files */
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Montserrat:wght@300;400;500&display=swap');
+:root {
+  --negro: #000000;
+  --blanco: #ffffff;
+  --gris-claro: #f4f4f4;
+  --gris: #6b6b6b;
+  --linea: #e4e4e4;
+  --fuente: 'Jost', system-ui, sans-serif;
+}
 
 * {
   margin: 0;
@@ -8,73 +14,284 @@
 }
 
 body {
-  font-family: 'Montserrat', sans-serif;
-  background-color: #f9f6f2;
-  color: #1a1a1a;
+  font-family: var(--fuente);
+  background-color: var(--blanco);
+  color: var(--negro);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
 }
 
 h1, h2, h3, h4, h5 {
-  font-family: 'Cormorant Garamond', serif;
-  font-weight: 400;
-  letter-spacing: 2px;
+  font-family: var(--fuente);
+  font-weight: 500;
+  line-height: 1.15;
 }
 
+a {
+  color: inherit;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+:focus-visible {
+  outline: 2px solid var(--negro);
+  outline-offset: 3px;
+}
+
+/* Barra de avisos */
+
+.avisos {
+  background-color: var(--negro);
+  color: var(--blanco);
+  overflow: hidden;
+  white-space: nowrap;
+  font-size: 0.8rem;
+  letter-spacing: 0.06em;
+  padding: 8px 0;
+}
+
+.avisos-texto {
+  display: inline-block;
+  padding-left: 100%;
+  animation: desplazar 28s linear infinite;
+}
+
+.avisos-texto span {
+  margin-right: 64px;
+}
+
+@keyframes desplazar {
+  to { transform: translateX(-100%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .avisos-texto {
+    animation: none;
+    padding-left: 24px;
+  }
+}
+
+/* Menú */
+
 nav {
-  background-color: #1a1a1a;
-  padding: 18px 40px;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background-color: var(--blanco);
+  border-bottom: 1px solid var(--linea);
+  padding: 10px 40px;
   display: flex;
-  gap: 30px;
   align-items: center;
+  gap: 32px;
   flex-wrap: wrap;
-  row-gap: 12px;
+  row-gap: 10px;
+}
+
+.nav-logo img {
+  width: 58px;
+  height: 58px;
 }
 
 nav a {
-  color: #f9f6f2;
+  color: var(--negro);
   text-decoration: none;
-  font-size: 0.75rem;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  font-family: 'Montserrat', sans-serif;
-  transition: color 0.3s;
+  font-size: 0.95rem;
+  padding-bottom: 2px;
+  border-bottom: 1px solid transparent;
 }
 
-nav a:hover {
-  color: #c9a96e;
+nav a:hover,
+nav a.activo {
+  border-bottom-color: var(--negro);
+}
+
+nav a.nav-logo {
+  border: none;
+}
+
+.nav-derecha {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 24px;
 }
 
 .nav-usuario {
-  color: #c9a96e;
-  font-size: 0.75rem;
-  letter-spacing: 2px;
-  margin-left: auto;
+  color: var(--gris);
+  font-size: 0.9rem;
   white-space: nowrap;
 }
 
 .nav-salir {
   background: none;
   border: none;
-  color: #f9f6f2;
-  font-size: 0.75rem;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  font-family: 'Montserrat', sans-serif;
+  color: var(--negro);
+  font: 0.95rem var(--fuente);
   cursor: pointer;
-  padding: 0;
+  white-space: nowrap;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+nav a.nav-carrito {
+  display: flex;
+  align-items: center;
+  gap: 6px;
   white-space: nowrap;
 }
 
-.nav-salir:hover {
-  color: #c9a96e;
+.nav-carrito .material-icons {
+  font-size: 22px;
+}
+
+/* Botones */
+
+.btn {
+  display: inline-block;
+  background-color: var(--negro);
+  color: var(--blanco);
+  border: 1px solid var(--negro);
+  padding: 14px 32px;
+  font: 500 0.95rem var(--fuente);
+  text-decoration: none;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.btn:hover {
+  background-color: var(--blanco);
+  color: var(--negro);
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn-borde {
+  background-color: var(--blanco);
+  color: var(--negro);
+}
+
+.btn-borde:hover {
+  background-color: var(--negro);
+  color: var(--blanco);
+}
+
+/* Páginas */
+
+.pagina {
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 40px 40px 80px;
+}
+
+.pagina-titulo {
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  margin-bottom: 6px;
+}
+
+.pagina-bajada {
+  color: var(--gris);
+  margin-bottom: 28px;
+}
+
+.estado {
+  color: var(--gris);
+  padding: 40px 0;
+}
+
+/* Carga */
+
+.esqueleto {
+  background: linear-gradient(90deg, #eeeeee 25%, #f7f7f7 50%, #eeeeee 75%);
+  background-size: 200% 100%;
+  animation: brillo 1.4s ease-in-out infinite;
+}
+
+@keyframes brillo {
+  from { background-position: 200% 0; }
+  to { background-position: -200% 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .esqueleto {
+    animation: none;
+  }
+}
+
+/* Pie */
+
+.pie {
+  background-color: var(--negro);
+  color: var(--blanco);
+  padding: 40px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+  font-size: 0.9rem;
+}
+
+.pie img {
+  width: 72px;
+  height: 72px;
+  border: 1px solid #333;
+  border-radius: 50%;
+}
+
+.pie p {
+  color: #bdbdbd;
+}
+
+.pie-instagram {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--blanco);
+  text-decoration: none;
+  border: 1px solid #444;
+  padding: 10px 18px;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.pie-instagram:hover {
+  background-color: var(--blanco);
+  color: var(--negro);
+}
+
+.pie strong {
+  display: block;
+  color: var(--blanco);
+  font-weight: 500;
+  font-size: 1rem;
 }
 
 @media (max-width: 768px) {
   nav {
-    padding: 14px 20px;
+    padding: 8px 16px;
     gap: 16px;
   }
 
-  .nav-usuario {
+  .nav-logo img {
+    width: 46px;
+    height: 46px;
+  }
+
+  .nav-derecha {
     margin-left: 0;
+  }
+
+  .pagina {
+    padding: 28px 16px 64px;
+  }
+
+  .pie {
+    padding: 28px 16px;
   }
 }

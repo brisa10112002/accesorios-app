@@ -1,13 +1,26 @@
-<div class="hero">
-  <div class="hero-slides">
-    <div class="hero-slide slide1"></div>
-    <div class="hero-slide slide2"></div>
+<section class="banner" aria-label="Novedades de MAJOMO">
+  <a routerLink="/catalogo" class="banner-slide slide1">
+    <img src="imagenes/hero1.jpg" alt="Aros y collares plateados. 3 cuotas sin interés, envíos a todo el país.">
+  </a>
+  <a routerLink="/catalogo" class="banner-slide slide2">
+    <img src="imagenes/hero2.jpg" alt="Collar con dije de mariposa. Encontrá tus nuevas joyitas favoritas.">
+  </a>
+</section>
+
+<section class="pagina">
+  <div class="seccion-cabecera">
+    <h2 class="seccion-titulo">Comprá por categoría</h2>
+    <a routerLink="/catalogo" class="ver-todo">Ver todo el catálogo</a>
   </div>
 
-  <div class="hero-content">
-    <p class="hero-sub">Nueva colección</p>
-    <h1 class="hero-title">El accesorio<br>perfecto te define</h1>
-    <p class="hero-desc">Carteras, cinturones, bijouterie y más.<br>Piezas únicas para cada estilo.</p>
-    <a routerLink="/catalogo" class="hero-btn">Ver catálogo</a>
+  <div class="categorias">
+    @for (categoria of categorias; track categoria.nombre) {
+      <a routerLink="/catalogo" class="categoria">
+        <div class="categoria-img">
+          <img [src]="categoria.imagen" [alt]="categoria.nombre">
+        </div>
+        <span>{{ categoria.nombre }}</span>
+      </a>
+    }
   </div>
-</div>
+</section>

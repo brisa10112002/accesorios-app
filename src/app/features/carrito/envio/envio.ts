@@ -21,6 +21,7 @@ export class Envio implements OnInit {
   private destroyRef = inject(DestroyRef);
 
   total = input.required<number>();
+  procesando = input(false);
   confirmar = output<DatosEnvio>();
   cancelar = output<void>();
 

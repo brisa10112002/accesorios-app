@@ -1,17 +1,53 @@
+<div class="avisos" aria-label="Novedades">
+  <div class="avisos-texto">
+    <span>Envíos a todo el país</span>
+    <span>3 cuotas sin interés</span>
+    <span>Nuevas joyitas todas las semanas</span>
+    <span>Envíos a todo el país</span>
+    <span>3 cuotas sin interés</span>
+  </div>
+</div>
+
 <nav>
-  <span style="color: #c9a96e; font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; letter-spacing: 4px; margin-right: 30px;">MAJOMO</span>
-  <a routerLink="/principal">Inicio</a>
-  <a routerLink="/catalogo">Catálogo</a>
+  <a routerLink="/principal" class="nav-logo" aria-label="MAJOMO, ir al inicio">
+    <img src="imagenes/logo-majomo.png" alt="MAJOMO">
+  </a>
+  <a routerLink="/principal" routerLinkActive="activo">Inicio</a>
+  <a routerLink="/catalogo" routerLinkActive="activo">Catálogo</a>
   @if (authService.getRol() === 'admin') {
-    <a routerLink="/admin">Admin</a>
+    <a routerLink="/admin" routerLinkActive="activo">Admin</a>
   }
-  @if (authService.estaLogueado()) {
-    <span class="nav-usuario">Hola, {{ authService.usuario()?.nombre }}</span>
-    <button class="nav-salir" (click)="cerrarSesion()">Cerrar sesión</button>
-  } @else {
-    <a routerLink="/login">Iniciar sesión</a>
-  }
-  <a routerLink="/carrito" class="nav-carrito">🛒 Carrito ({{ carritoService.items().length }})</a>
+
+  <div class="nav-derecha">
+    @if (authService.estaLogueado()) {
+      <span class="nav-usuario">Hola, {{ authService.usuario()?.nombre }}</span>
+      <button class="nav-salir" (click)="cerrarSesion()">Cerrar sesión</button>
+    } @else {
+      <a routerLink="/login" routerLinkActive="activo">Iniciar sesión</a>
+    }
+    <a routerLink="/carrito" routerLinkActive="activo" class="nav-carrito">
+      <span class="material-icons" aria-hidden="true">shopping_bag</span>
+      Carrito ({{ carritoService.cantidadTotal() }})
+    </a>
+  </div>
 </nav>
 
-<router-outlet></router-outlet>
+<main>
+  <router-outlet></router-outlet>
+</main>
+
+<footer class="pie">
+  <img src="imagenes/logo-majomo.png" alt="">
+  <div>
+    <strong>MAJOMO</strong>
+    <p>Accesorios y bijouterie con envío a todo el país.</p>
+  </div>
+  <a class="pie-instagram" href="https://www.instagram.com/majomo" target="_blank" rel="noopener" aria-label="MAJOMO en Instagram">
+    <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
+      <rect x="2.5" y="2.5" width="19" height="19" rx="5.5" fill="none" stroke="currentColor" stroke-width="1.8"/>
+      <circle cx="12" cy="12" r="4.3" fill="none" stroke="currentColor" stroke-width="1.8"/>
+      <circle cx="17.4" cy="6.6" r="1.2" fill="currentColor"/>
+    </svg>
+    <span>Seguinos en Instagram</span>
+  </a>
+</footer>

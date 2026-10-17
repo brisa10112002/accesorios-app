@@ -1,14 +1,22 @@
-<div class="detalle-container">
+<div class="pagina">
   <a routerLink="/catalogo" class="detalle-volver">← Volver al catálogo</a>
 
   @if (cargando()) {
-    <p class="detalle-estado">Cargando accesorio...</p>
+    <div class="detalle-box" aria-busy="true" aria-label="Cargando accesorio">
+      <div class="esqueleto esqueleto-img"></div>
+      <div>
+        <div class="esqueleto esqueleto-linea corta"></div>
+        <div class="esqueleto esqueleto-linea titulo"></div>
+        <div class="esqueleto esqueleto-linea"></div>
+        <div class="esqueleto esqueleto-linea"></div>
+      </div>
+    </div>
   } @else if (error()) {
-    <p class="detalle-estado">No encontramos este accesorio.</p>
+    <p class="estado">No encontramos este accesorio. Puede que lo hayan dado de baja.</p>
   } @else {
     @if (accesorio(); as accesorio) {
       @if (mensajeAgregado()) {
-        <div class="detalle-mensaje">{{ mensajeAgregado() }}</div>
+        <div class="detalle-mensaje" role="status">{{ mensajeAgregado() }}</div>
       }
 
       <div class="detalle-box">
@@ -18,18 +26,36 @@
 
         <div class="detalle-info">
           <p class="detalle-categoria">{{ accesorio.categoria | uppercase }}</p>
-          <h2 class="detalle-nombre">{{ accesorio.nombre }}</h2>
+          <h1 class="detalle-nombre">{{ accesorio.nombre }}</h1>
           <p class="detalle-precio">{{ accesorio.precio | currency:'ARS':'symbol':'1.0-0' }}</p>
+          <p class="detalle-cuotas">3 cuotas sin interés de {{ accesorio.precio / 3 | currency:'ARS':'symbol':'1.0-0' }}</p>
           <p class="detalle-descripcion">{{ accesorio.descripcion }}</p>
 
           @if (accesorio.stock > 0) {
             <p class="detalle-stock" [appDestacarStock]="accesorio.stock">{{ accesorio.stock | estadoStock }}</p>
-            <button class="btn-comprar" (click)="agregar(accesorio)">Agregar al carrito</button>
+            <button class="btn" (click)="agregar(accesorio)">Agregar al carrito</button>
           } @else {
-            <p class="detalle-agotado">AGOTADO</p>
+            <p class="detalle-agotado">Sin stock por ahora</p>
           }
         </div>
       </div>
+
+      @if (relacionados().length > 0) {
+        <section class="relacionados">
+          <h2 class="relacionados-titulo">También te puede gustar</h2>
+          <div class="relacionados-grilla">
+            @for (otro of relacionados(); track otro.id) {
+              <a class="relacionado" [routerLink]="['/catalogo', otro.id]">
+                <div class="relacionado-img">
+                  <img [src]="otro.imagen" [alt]="otro.nombre">
+                </div>
+                <p class="relacionado-nombre">{{ otro.nombre }}</p>
+                <p class="relacionado-precio">{{ otro.precio | currency:'ARS':'symbol':'1.0-0' }}</p>
+              </a>
+            }
+          </div>
+        </section>
+      }
     }
   }
 </div>

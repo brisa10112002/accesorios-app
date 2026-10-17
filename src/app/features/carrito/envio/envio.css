@@ -1,7 +1,8 @@
 .envio-box {
-  background-color: #fff;
-  padding: 30px;
-  margin-top: 20px;
+  border: 1px solid var(--linea);
+  border-radius: 0;
+  padding: 28px;
+  margin-top: 24px;
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -9,7 +10,7 @@
 
 .envio-titulo {
   font-size: 1.6rem;
-  color: #1a1a1a;
+  color: var(--negro);
   margin-bottom: 16px;
 }
 
@@ -24,7 +25,6 @@
 
 .envio-total {
   text-align: right;
-  letter-spacing: 2px;
   margin: 10px 0;
 }
 
@@ -36,29 +36,25 @@
 
 .btn-cancelar,
 .btn-confirmar {
+  border: 2px solid var(--negro);
+  border-radius: 0;
   padding: 12px 24px;
-  font-size: 0.7rem;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  border: 1px solid #1a1a1a;
-  font-family: 'Montserrat', sans-serif;
+  font: 600 0.95rem var(--fuente);
   cursor: pointer;
 }
 
 .btn-cancelar {
   background-color: transparent;
-  color: #1a1a1a;
+  color: var(--negro);
 }
 
 .btn-confirmar {
-  background-color: #1a1a1a;
-  color: #f9f6f2;
-  transition: background-color 0.3s;
+  background-color: var(--negro);
+  color: var(--blanco);
 }
 
 .btn-confirmar:hover {
-  background-color: #c9a96e;
-  color: #1a1a1a;
+  background-color: var(--negro);
 }
 
 @media (max-width: 600px) {
@@ -66,4 +62,9 @@
     flex-direction: column;
     gap: 0;
   }
+}
+
+.btn-confirmar:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }

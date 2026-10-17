@@ -1,11 +1,11 @@
 <div class="login-container">
   <div class="login-box">
-    <p class="login-sub">Bienvenida</p>
-    <h2 class="login-titulo">Iniciá sesión</h2>
+    <h1 class="login-titulo">Iniciá sesión</h1>
+    <p class="login-bajada">Entrá para comprar o administrar el catálogo.</p>
 
     @if (error()) {
-      <div class="login-mensaje">
-        Usuario o contraseña incorrectos
+      <div class="login-mensaje" role="alert">
+        Usuario o contraseña incorrectos. Revisalos y probá de nuevo.
       </div>
     }
 
@@ -29,13 +29,9 @@
         }
       </div>
 
-      <button type="submit" class="btn-ingresar">Ingresar</button>
+      <button type="submit" class="btn btn-ingresar">Ingresar</button>
 
-      <p class="login-demo">Usuarios de prueba: admin / 1234 · cliente / 1234</p>
-
-      <p class="login-volver">
-        <a routerLink="/principal">Volver al inicio</a>
-      </p>
+      <p class="login-demo">Usuarios de prueba: admin / 1234 y cliente / 1234</p>
     </form>
   </div>
 </div>

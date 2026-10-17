@@ -1,126 +1,161 @@
-.detalle-container {
-  padding: 40px;
-  background-color: #f9f6f2;
-  min-height: 100vh;
-}
-
 .detalle-volver {
   display: inline-block;
-  color: #c9a96e;
+  color: var(--negro);
+  font-weight: 600;
   text-decoration: none;
-  font-size: 0.75rem;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  margin-bottom: 30px;
+  margin-bottom: 28px;
 }
 
 .detalle-box {
-  max-width: 1000px;
-  margin: 0 auto;
-  display: flex;
-  gap: 50px;
-  background-color: #fff;
-  padding: 40px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 56px;
+  align-items: center;
 }
 
 .detalle-img {
-  flex: 1;
+  background-color: var(--gris-claro);
+  border-radius: 0;
+  padding: 40px;
 }
 
 .detalle-img img {
   width: 100%;
-  max-height: 450px;
+  max-height: 460px;
   object-fit: contain;
-}
-
-.detalle-info {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  mix-blend-mode: multiply;
 }
 
 .detalle-categoria {
-  color: #c9a96e;
-  font-size: 0.7rem;
-  letter-spacing: 3px;
-  margin-bottom: 10px;
+  color: var(--gris);
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  margin-bottom: 8px;
 }
 
 .detalle-nombre {
-  font-size: 2.5rem;
-  color: #1a1a1a;
-  margin-bottom: 16px;
+  text-transform: uppercase;
+  font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+  font-weight: 500;
+  color: var(--negro);
+  margin-bottom: 12px;
 }
 
 .detalle-precio {
-  font-size: 1.3rem;
-  color: #1a1a1a;
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: var(--negro);
   margin-bottom: 20px;
 }
 
+.detalle-cuotas {
+  color: var(--gris);
+  margin: -14px 0 20px;
+}
+
 .detalle-descripcion {
-  font-size: 0.9rem;
-  color: #555;
-  line-height: 1.7;
+  font-size: 1.05rem;
+  color: var(--gris);
+  max-width: 50ch;
   margin-bottom: 20px;
 }
 
 .detalle-stock {
-  font-size: 0.75rem;
-  color: #aaa;
-  letter-spacing: 1px;
   margin-bottom: 20px;
 }
 
 .detalle-agotado {
   display: inline-block;
-  background-color: #1a1a1a;
-  color: #f9f6f2;
-  font-size: 0.7rem;
-  letter-spacing: 2px;
+  background-color: var(--negro);
+  color: var(--blanco);
+  font-weight: 600;
   padding: 8px 16px;
-  align-self: flex-start;
-}
-
-.btn-comprar {
-  background-color: #1a1a1a;
-  color: #f9f6f2;
-  border: none;
-  padding: 14px;
-  font-size: 0.7rem;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  cursor: pointer;
-  font-family: 'Montserrat', sans-serif;
-  transition: background-color 0.3s;
-}
-
-.btn-comprar:hover {
-  background-color: #c9a96e;
-  color: #1a1a1a;
+  border-radius: 0;
 }
 
 .detalle-mensaje {
-  max-width: 1000px;
-  margin: 0 auto 20px;
-  background-color: #1a1a1a;
-  color: #c9a96e;
-  text-align: center;
-  padding: 12px;
-  font-size: 0.75rem;
-  letter-spacing: 2px;
-}
-
-.detalle-estado {
-  text-align: center;
-  color: #555;
+  background-color: var(--negro);
+  color: var(--blanco);
+  padding: 12px 18px;
+  border-radius: 0;
+  margin-bottom: 24px;
 }
 
 @media (max-width: 768px) {
   .detalle-box {
-    flex-direction: column;
-    gap: 20px;
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .detalle-img {
     padding: 20px;
+  }
+}
+
+.relacionados {
+  margin-top: 72px;
+  border-top: 1px solid var(--linea);
+  padding-top: 32px;
+}
+
+.relacionados-titulo {
+  font-size: 1.4rem;
+  margin-bottom: 20px;
+}
+
+.relacionados-grilla {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.relacionado {
+  text-decoration: none;
+  color: var(--negro);
+}
+
+.relacionado-img {
+  aspect-ratio: 3 / 4;
+  background-color: var(--gris-claro);
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+
+.relacionado-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.relacionado-nombre {
+  text-transform: uppercase;
+  font-size: 0.9rem;
+}
+
+.relacionado-precio {
+  font-weight: 600;
+}
+
+.esqueleto-img {
+  aspect-ratio: 1;
+}
+
+.esqueleto-linea {
+  height: 18px;
+  margin-bottom: 14px;
+}
+
+.esqueleto-linea.corta {
+  width: 30%;
+}
+
+.esqueleto-linea.titulo {
+  height: 40px;
+  width: 80%;
+}
+
+@media (max-width: 768px) {
+  .relacionados-grilla {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
