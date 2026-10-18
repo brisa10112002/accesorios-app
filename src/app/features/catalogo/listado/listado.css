@@ -189,3 +189,17 @@
 .esqueleto-linea.corta {
   width: 40%;
 }
+
+.solo-stock {
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.solo-stock input {
+  accent-color: var(--negro);
+  width: 16px;
+  height: 16px;
+}

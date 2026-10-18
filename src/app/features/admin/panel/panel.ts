@@ -1,4 +1,4 @@
-import { Component, OnInit, inject, signal } from '@angular/core';
+import { Component, OnInit, computed, inject, signal } from '@angular/core';
 import { CurrencyPipe } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { MatTableModule } from '@angular/material/table';
@@ -26,6 +26,8 @@ export class Panel implements OnInit {
   cargando = signal(true);
   error = signal(false);
   columnas: string[] = ['imagen', 'nombre', 'categoria', 'precio', 'stock', 'acciones'];
+
+  pocoStock = computed(() => this.accesorios().filter(a => a.stock <= 3));
 
   ngOnInit() {
     this.accesoriosService.retornar().subscribe({

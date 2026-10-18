@@ -1,25 +1,48 @@
-import { Injectable, signal } from '@angular/core';
-import { Usuario } from '../models/usuario';
+import { Injectable, inject, signal } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable, map, switchMap, throwError } from 'rxjs';
+import { Usuario, UsuarioRegistrado } from '../models/usuario';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+  private http = inject(HttpClient);
+  private url = 'https://6ad0399c03feaa52b21f1f73.mockapi.io/usuarios';
   private clave = 'usuario';
   usuario = signal<Usuario | null>(this.obtenerUsuario());
 
-  login(nombreUsuario: string, contrasena: string): boolean {
-    if (nombreUsuario === 'admin' && contrasena === '1234') {
-      this.guardarSesion({ nombre: 'Admin', rol: 'admin' });
-      return true;
-    }
+  login(nombreUsuario: string, contrasena: string): Observable<boolean> {
+    return this.buscarUsuario(nombreUsuario).pipe(
+      map(encontrado => {
+        if (encontrado && encontrado.contrasena === contrasena) {
+          this.guardarSesion({ nombre: encontrado.nombre, rol: encontrado.rol });
+          return true;
+        }
+        return false;
+      })
+    );
+  }
 
-    if (nombreUsuario === 'cliente' && contrasena === '1234') {
-      this.guardarSesion({ nombre: 'Cliente', rol: 'cliente' });
-      return true;
-    }
+  registrar(datos: Omit<UsuarioRegistrado, 'id' | 'rol'>): Observable<UsuarioRegistrado> {
+    return this.buscarUsuario(datos.usuario).pipe(
+      switchMap(existente => {
+        if (existente) {
+          return throwError(() => new Error('Ese usuario ya existe'));
+        }
+        return this.http.post<UsuarioRegistrado>(this.url, { ...datos, rol: 'cliente' });
+      })
+    );
+  }
 
-    return false;
+  buscarUsuario(nombreUsuario: string): Observable<UsuarioRegistrado | undefined> {
+    return this.http.get<UsuarioRegistrado[]>(this.url).pipe(
+      map(lista => lista.find(u => u.usuario.toLowerCase() === nombreUsuario.trim().toLowerCase()))
+    );
+  }
+
+  cambiarContrasena(usuario: UsuarioRegistrado, nuevaContrasena: string): Observable<UsuarioRegistrado> {
+    return this.http.put<UsuarioRegistrado>(`${this.url}/${usuario.id}`, { ...usuario, contrasena: nuevaContrasena });
   }
 
   guardarSesion(usuario: Usuario) {

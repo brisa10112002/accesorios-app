@@ -25,6 +25,10 @@
     } @else {
       <a routerLink="/login" routerLinkActive="activo">Iniciar sesión</a>
     }
+    <a routerLink="/favoritos" routerLinkActive="activo" class="nav-carrito">
+      <span class="material-icons" aria-hidden="true">favorite_border</span>
+      Favoritos ({{ favoritosService.cantidad() }})
+    </a>
     <a routerLink="/carrito" routerLinkActive="activo" class="nav-carrito">
       <span class="material-icons" aria-hidden="true">shopping_bag</span>
       Carrito ({{ carritoService.cantidadTotal() }})
@@ -51,3 +55,13 @@
     <span>Seguinos en Instagram</span>
   </a>
 </footer>
+
+<a
+  class="whatsapp"
+  href="https://wa.me/5491158963164?text=Hola%20MAJOMO%2C%20quiero%20hacer%20una%20consulta"
+  target="_blank"
+  rel="noopener"
+  aria-label="Escribinos por WhatsApp">
+  <span class="material-icons" aria-hidden="true">chat</span>
+  <span class="whatsapp-texto">¿Consultas? Escribinos</span>
+</a>

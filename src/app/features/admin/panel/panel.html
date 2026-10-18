@@ -14,6 +14,15 @@
   } @else if (accesorios().length === 0) {
     <p class="estado">No hay accesorios cargados.</p>
   } @else {
+    @if (pocoStock().length > 0) {
+      <div class="admin-aviso" role="status">
+        <strong>⚠️ {{ pocoStock().length }} {{ pocoStock().length === 1 ? 'producto tiene' : 'productos tienen' }} poco stock:</strong>
+        @for (accesorio of pocoStock(); track accesorio.id) {
+          <span>{{ accesorio.nombre }} ({{ accesorio.stock }})</span>
+        }
+      </div>
+    }
+
     <div class="admin-tabla-contenedor">
     <table mat-table [dataSource]="accesorios()" class="admin-tabla">
 

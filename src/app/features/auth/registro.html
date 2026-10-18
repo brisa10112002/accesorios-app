@@ -1,0 +1,88 @@
+<div class="login-container">
+  <div class="login-box">
+    <h1 class="login-titulo">Creá tu cuenta</h1>
+    <p class="login-bajada">Registrate para comprar en MAJOMO.</p>
+
+    @if (error()) {
+      <div class="login-mensaje" role="alert">{{ error() }}</div>
+    }
+
+    <form class="login-form" [formGroup]="form" (ngSubmit)="registrarse()">
+      <div class="form-group">
+        <label for="nombre">Nombre</label>
+        <input id="nombre" type="text" formControlName="nombre">
+        @if (form.controls.nombre.touched && form.controls.nombre.hasError('required')) {
+          <p class="form-error">Ingresá tu nombre</p>
+        }
+        @if (form.controls.nombre.touched && form.controls.nombre.hasError('minlength')) {
+          <p class="form-error">Tiene que tener al menos 3 letras</p>
+        }
+      </div>
+
+      <div class="form-group">
+        <label for="usuario">Usuario</label>
+        <input id="usuario" type="text" formControlName="usuario">
+        @if (form.controls.usuario.touched && form.controls.usuario.hasError('required')) {
+          <p class="form-error">Elegí un usuario</p>
+        }
+        @if (form.controls.usuario.touched && form.controls.usuario.hasError('minlength')) {
+          <p class="form-error">Tiene que tener al menos 4 caracteres</p>
+        }
+      </div>
+
+      <div class="form-group">
+        <label for="contrasena">Contraseña</label>
+        <div class="input-contrasena">
+          <input id="contrasena" [type]="verContrasena() ? 'text' : 'password'" formControlName="contrasena">
+          <button type="button" class="ver-contrasena" (click)="verContrasena.set(!verContrasena())" [attr.aria-label]="verContrasena() ? 'Ocultar contraseña' : 'Mostrar contraseña'">
+            <span class="material-icons" aria-hidden="true">{{ verContrasena() ? 'visibility_off' : 'visibility' }}</span>
+          </button>
+        </div>
+        @if (form.controls.contrasena.touched && form.controls.contrasena.hasError('required')) {
+          <p class="form-error">Ingresá una contraseña</p>
+        }
+        @if (form.controls.contrasena.touched && form.controls.contrasena.hasError('minlength')) {
+          <p class="form-error">Tiene que tener al menos 4 caracteres</p>
+        }
+      </div>
+
+      <div class="form-group">
+        <label for="repetir">Repetí la contraseña</label>
+        <input id="repetir" [type]="verContrasena() ? 'text' : 'password'" formControlName="repetir">
+        @if (form.controls.repetir.touched && form.hasError('noCoinciden')) {
+          <p class="form-error">Las contraseñas no coinciden</p>
+        }
+      </div>
+
+      <div class="form-group">
+        <label for="pregunta">Pregunta secreta</label>
+        <select id="pregunta" formControlName="pregunta">
+          <option value="" disabled>Elegí una pregunta</option>
+          @for (pregunta of preguntas; track pregunta) {
+            <option [value]="pregunta">{{ pregunta }}</option>
+          }
+        </select>
+        <p class="login-ayuda">La vas a usar si te olvidás la contraseña.</p>
+        @if (form.controls.pregunta.touched && form.controls.pregunta.hasError('required')) {
+          <p class="form-error">Elegí una pregunta</p>
+        }
+      </div>
+
+      <div class="form-group">
+        <label for="respuesta">Respuesta</label>
+        <input id="respuesta" type="text" formControlName="respuesta">
+        @if (form.controls.respuesta.touched && form.controls.respuesta.hasError('required')) {
+          <p class="form-error">Escribí tu respuesta</p>
+        }
+      </div>
+
+      <button type="submit" class="btn btn-ingresar" [disabled]="guardando()">
+        {{ guardando() ? 'Creando cuenta...' : 'Crear cuenta' }}
+      </button>
+
+      <p class="login-links">
+        ¿Ya tenés cuenta? <a routerLink="/login">Iniciá sesión</a>
+      </p>
+    </form>
+  </div>
+</div>

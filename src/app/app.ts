@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { Router, RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router';
 import { CarritoService } from './shared/services/carrito';
 import { AuthService } from './shared/services/auth';
+import { FavoritosService } from './shared/services/favoritos';
 
 @Component({
   selector: 'app-root',
@@ -13,6 +14,7 @@ export class App {
   title = 'accesorios-app';
   carritoService = inject(CarritoService);
   authService = inject(AuthService);
+  favoritosService = inject(FavoritosService);
   private router = inject(Router);
 
   cerrarSesion() {

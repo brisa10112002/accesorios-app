@@ -29,6 +29,11 @@
         [value]="busqueda()"
         (input)="buscar(campo.value)">
 
+      <label class="solo-stock">
+        <input #check type="checkbox" [checked]="soloConStock()" (change)="cambiarSoloConStock(check.checked)">
+        Solo con stock
+      </label>
+
       <label class="orden">
         Ordenar por
         <select #selector (change)="ordenar(selector.value)">
@@ -55,6 +60,13 @@
         <article class="producto" (click)="verDetalle(accesorio)">
           <div class="producto-img">
             <img [src]="accesorio.imagen" [alt]="accesorio.nombre">
+            <button
+              class="btn-favorito"
+              [class.activo]="favoritosService.esFavorito(accesorio.id)"
+              (click)="$event.stopPropagation(); favoritosService.alternar(accesorio.id)"
+              [attr.aria-label]="favoritosService.esFavorito(accesorio.id) ? 'Quitar de favoritos' : 'Agregar a favoritos'">
+              <span class="material-icons" aria-hidden="true">{{ favoritosService.esFavorito(accesorio.id) ? 'favorite' : 'favorite_border' }}</span>
+            </button>
             @if (accesorio.stock === 0) {
               <span class="badge-agotado">Agotado</span>
             }

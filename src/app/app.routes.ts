@@ -21,6 +21,18 @@ export const routes: Routes = [
     loadComponent: () => import('./features/auth/login').then(m => m.Login)
   },
   {
+    path: 'registro',
+    loadComponent: () => import('./features/auth/registro').then(m => m.Registro)
+  },
+  {
+    path: 'recuperar',
+    loadComponent: () => import('./features/auth/recuperar').then(m => m.Recuperar)
+  },
+  {
+    path: 'favoritos',
+    loadComponent: () => import('./features/favoritos/favoritos').then(m => m.Favoritos)
+  },
+  {
     path: 'carrito',
     canActivate: [authGuard],
     loadComponent: () => import('./features/carrito/carrito').then(m => m.Carrito)

@@ -229,7 +229,7 @@ nav a.nav-carrito {
 .pie {
   background-color: var(--negro);
   color: var(--blanco);
-  padding: 40px;
+  padding: 40px 40px 96px;
   display: flex;
   align-items: center;
   gap: 24px;
@@ -285,6 +285,8 @@ nav a.nav-carrito {
 
   .nav-derecha {
     margin-left: 0;
+    flex-wrap: wrap;
+    gap: 10px 18px;
   }
 
   .pagina {
@@ -292,6 +294,66 @@ nav a.nav-carrito {
   }
 
   .pie {
-    padding: 28px 16px;
+    padding: 28px 16px 90px;
+  }
+}
+
+/* Favoritos */
+
+.btn-favorito {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 1;
+  width: 36px;
+  height: 36px;
+  border: none;
+  border-radius: 50%;
+  background-color: var(--blanco);
+  color: var(--negro);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.btn-favorito .material-icons {
+  font-size: 20px;
+}
+
+.btn-favorito.activo {
+  color: #b3261e;
+}
+
+/* WhatsApp */
+
+.whatsapp {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: #25d366;
+  color: var(--blanco);
+  text-decoration: none;
+  font-weight: 600;
+  padding: 12px 18px;
+  border-radius: 999px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+}
+
+.whatsapp:hover {
+  background-color: #1ebe5b;
+}
+
+@media (max-width: 600px) {
+  .whatsapp-texto {
+    display: none;
+  }
+
+  .whatsapp {
+    padding: 14px;
   }
 }

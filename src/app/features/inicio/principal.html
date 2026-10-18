@@ -24,3 +24,16 @@
     }
   </div>
 </section>
+
+<section class="pagina">
+  <h2 class="seccion-titulo">Preguntas frecuentes</h2>
+
+  <div class="preguntas">
+    @for (item of preguntas; track item.pregunta) {
+      <details class="pregunta">
+        <summary>{{ item.pregunta }}</summary>
+        <p>{{ item.respuesta }}</p>
+      </details>
+    }
+  </div>
+</section>

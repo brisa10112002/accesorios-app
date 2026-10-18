@@ -159,3 +159,14 @@
     grid-template-columns: repeat(2, 1fr);
   }
 }
+
+.detalle-favorito {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.detalle-favorito .material-icons {
+  font-size: 20px;
+}

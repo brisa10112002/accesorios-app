@@ -99,3 +99,43 @@
     grid-template-columns: repeat(2, 1fr);
   }
 }
+
+.preguntas {
+  max-width: 760px;
+  margin-top: 20px;
+  border-top: 1px solid var(--linea);
+}
+
+.pregunta {
+  border-bottom: 1px solid var(--linea);
+}
+
+.pregunta summary {
+  padding: 18px 0;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.pregunta summary::-webkit-details-marker {
+  display: none;
+}
+
+.pregunta summary::after {
+  content: '+';
+  font-size: 1.3rem;
+  line-height: 1;
+}
+
+.pregunta[open] summary::after {
+  content: '−';
+}
+
+.pregunta p {
+  color: var(--gris);
+  padding-bottom: 18px;
+}

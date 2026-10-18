@@ -20,7 +20,12 @@
 
       <div class="form-group">
         <label for="contrasena">Contraseña</label>
-        <input id="contrasena" type="password" formControlName="contrasena" placeholder="••••••••">
+        <div class="input-contrasena">
+          <input id="contrasena" [type]="verContrasena() ? 'text' : 'password'" formControlName="contrasena" placeholder="••••••••">
+          <button type="button" class="ver-contrasena" (click)="verContrasena.set(!verContrasena())" [attr.aria-label]="verContrasena() ? 'Ocultar contraseña' : 'Mostrar contraseña'">
+            <span class="material-icons" aria-hidden="true">{{ verContrasena() ? 'visibility_off' : 'visibility' }}</span>
+          </button>
+        </div>
         @if (form.controls.contrasena.touched && form.controls.contrasena.hasError('required')) {
           <p class="form-error">Ingresá tu contraseña</p>
         }
@@ -29,7 +34,16 @@
         }
       </div>
 
-      <button type="submit" class="btn btn-ingresar">Ingresar</button>
+      <button type="submit" class="btn btn-ingresar" [disabled]="cargando()">
+        {{ cargando() ? 'Ingresando...' : 'Ingresar' }}
+      </button>
+
+      <p class="login-links">
+        <a routerLink="/recuperar">¿Olvidaste tu contraseña?</a>
+      </p>
+      <p class="login-links">
+        ¿No tenés cuenta? <a routerLink="/registro">Registrate</a>
+      </p>
 
       <p class="login-demo">Usuarios de prueba: admin / 1234 y cliente / 1234</p>
     </form>

@@ -1,0 +1,37 @@
+<div class="pagina">
+  <h1 class="pagina-titulo">Mis favoritos</h1>
+
+  @if (cargando()) {
+    <p class="estado">Cargando favoritos...</p>
+  } @else if (error()) {
+    <p class="estado">No se pudieron cargar los favoritos. Revisá tu conexión y recargá la página.</p>
+  } @else if (accesorios().length === 0) {
+    <div class="favoritos-vacio">
+      <p>Todavía no guardaste nada. Tocá el corazón de un producto para guardarlo acá.</p>
+      <a routerLink="/catalogo" class="btn">Ver catálogo</a>
+    </div>
+  } @else {
+    <p class="pagina-bajada">{{ accesorios().length }} {{ accesorios().length === 1 ? 'producto guardado' : 'productos guardados' }}</p>
+
+    <div class="favoritos-grilla">
+      @for (accesorio of accesorios(); track accesorio.id) {
+        <a class="favorito" [routerLink]="['/catalogo', accesorio.id]">
+          <div class="favorito-img">
+            <img [src]="accesorio.imagen" [alt]="accesorio.nombre">
+            <button
+              class="btn-favorito activo"
+              (click)="$event.preventDefault(); $event.stopPropagation(); favoritosService.alternar(accesorio.id)"
+              aria-label="Quitar de favoritos">
+              <span class="material-icons" aria-hidden="true">favorite</span>
+            </button>
+          </div>
+          <p class="favorito-nombre">{{ accesorio.nombre }}</p>
+          <p class="favorito-precio">{{ accesorio.precio | currency:'ARS':'symbol':'1.0-0' }}</p>
+          @if (accesorio.stock === 0) {
+            <p class="favorito-agotado">Sin stock</p>
+          }
+        </a>
+      }
+    </div>
+  }
+</div>

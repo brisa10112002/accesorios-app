@@ -3,6 +3,7 @@ import { CurrencyPipe, UpperCasePipe } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { AccesoriosService } from '../../../shared/services/accesorios';
 import { CarritoService } from '../../../shared/services/carrito';
+import { FavoritosService } from '../../../shared/services/favoritos';
 import { Accesorio } from '../../../shared/models/accesorios';
 import { EstadoStockPipe } from '../../../shared/pipes/estado-stock.pipe';
 import { DestacarStockDirective } from '../../../shared/directives/destacar-stock.directive';
@@ -16,6 +17,7 @@ import { DestacarStockDirective } from '../../../shared/directives/destacar-stoc
 export class Listado implements OnInit {
   accesoriosService = inject(AccesoriosService);
   carritoService = inject(CarritoService);
+  favoritosService = inject(FavoritosService);
 
   todos = signal<Accesorio[]>([]);
   cargando = signal(true);
@@ -23,6 +25,7 @@ export class Listado implements OnInit {
   categoriaActiva = signal('Todos');
   busqueda = signal('');
   orden = signal('destacados');
+  soloConStock = signal(false);
   esqueletos = [1, 2, 3, 4, 5, 6, 7, 8];
   accesorioSeleccionado = signal<Accesorio | null>(null);
   mensajeAgregado = signal('');
@@ -34,7 +37,8 @@ export class Listado implements OnInit {
 
     const lista = this.todos()
       .filter(a => this.categoriaActiva() === 'Todos' || a.categoria === this.categoriaActiva())
-      .filter(a => this.normalizar(a.nombre).includes(texto));
+      .filter(a => this.normalizar(a.nombre).includes(texto))
+      .filter(a => !this.soloConStock() || a.stock > 0);
 
     if (this.orden() === 'menor') {
       return [...lista].sort((a, b) => a.precio - b.precio);
@@ -68,6 +72,10 @@ export class Listado implements OnInit {
 
   ordenar(valor: string) {
     this.orden.set(valor);
+  }
+
+  cambiarSoloConStock(valor: boolean) {
+    this.soloConStock.set(valor);
   }
 
   private normalizar(texto: string): string {

@@ -37,6 +37,11 @@
           } @else {
             <p class="detalle-agotado">Sin stock por ahora</p>
           }
+
+          <button class="btn btn-borde detalle-favorito" (click)="favoritosService.alternar(accesorio.id)">
+            <span class="material-icons" aria-hidden="true">{{ favoritosService.esFavorito(accesorio.id) ? 'favorite' : 'favorite_border' }}</span>
+            {{ favoritosService.esFavorito(accesorio.id) ? 'Quitar de favoritos' : 'Guardar en favoritos' }}
+          </button>
         </div>
       </div>
 

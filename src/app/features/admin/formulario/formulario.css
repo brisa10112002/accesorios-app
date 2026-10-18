@@ -24,6 +24,32 @@
   margin-top: 16px;
 }
 
+.imagen-campo {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.imagen-titulo {
+  margin: 0;
+  font-weight: 600;
+}
+
+.imagen-preview {
+  width: 160px;
+  height: 160px;
+  object-fit: cover;
+  border: 1px solid var(--linea);
+}
+
+.imagen-error {
+  margin: 0;
+  color: #b3261e;
+  font-size: 13px;
+}
+
 @media (max-width: 600px) {
   .form-box {
     padding: 22px;

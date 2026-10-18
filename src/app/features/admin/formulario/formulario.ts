@@ -6,6 +6,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { AccesoriosService } from '../../../shared/services/accesorios';
+import { ImagenesService } from '../../../shared/services/imagenes';
 
 @Component({
   selector: 'app-formulario',
@@ -19,10 +20,12 @@ export class Formulario implements OnInit {
   private router = inject(Router);
   private accesoriosService = inject(AccesoriosService);
   private snackBar = inject(MatSnackBar);
+  private imagenesService = inject(ImagenesService);
 
   categorias: string[] = ['Carteras', 'Cinturones', 'Gorras', 'Bijouterie', 'Mochilas'];
   idEditar: string | null = null;
   guardando = signal(false);
+  subiendoImagen = signal(false);
 
   form = this.fb.nonNullable.group({
     nombre: ['', [Validators.required, Validators.minLength(3)]],
@@ -45,6 +48,26 @@ export class Formulario implements OnInit {
         }
       });
     }
+  }
+
+  elegirImagen(evento: Event) {
+    const archivo = (evento.target as HTMLInputElement).files?.[0];
+    if (!archivo) {
+      return;
+    }
+
+    this.subiendoImagen.set(true);
+
+    this.imagenesService.subir(archivo).subscribe({
+      next: url => {
+        this.form.controls.imagen.setValue(url);
+        this.subiendoImagen.set(false);
+      },
+      error: () => {
+        this.subiendoImagen.set(false);
+        this.snackBar.open('No se pudo subir la imagen', 'Cerrar', { duration: 3000 });
+      }
+    });
   }
 
   guardar() {

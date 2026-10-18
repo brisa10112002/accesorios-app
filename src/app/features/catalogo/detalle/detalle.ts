@@ -5,6 +5,7 @@ import { ActivatedRoute, RouterLink } from '@angular/router';
 import { switchMap, tap } from 'rxjs';
 import { AccesoriosService } from '../../../shared/services/accesorios';
 import { CarritoService } from '../../../shared/services/carrito';
+import { FavoritosService } from '../../../shared/services/favoritos';
 import { Accesorio } from '../../../shared/models/accesorios';
 import { EstadoStockPipe } from '../../../shared/pipes/estado-stock.pipe';
 import { DestacarStockDirective } from '../../../shared/directives/destacar-stock.directive';
@@ -20,6 +21,7 @@ export class Detalle implements OnInit {
   private accesoriosService = inject(AccesoriosService);
   private destroyRef = inject(DestroyRef);
   carritoService = inject(CarritoService);
+  favoritosService = inject(FavoritosService);
 
   accesorio = signal<Accesorio | null>(null);
   todos = signal<Accesorio[]>([]);

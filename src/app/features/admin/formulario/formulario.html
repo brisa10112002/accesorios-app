@@ -52,14 +52,19 @@
       </mat-form-field>
     </div>
 
-    <mat-form-field appearance="outline">
-      <mat-label>Imagen</mat-label>
-      <input matInput formControlName="imagen" placeholder="imagenes/cartera.jpg">
-      <mat-hint>Ruta de la imagen o link de internet</mat-hint>
-      @if (form.controls.imagen.hasError('required')) {
-        <mat-error>La imagen es obligatoria</mat-error>
+    <div class="imagen-campo">
+      <p class="imagen-titulo">Imagen</p>
+      @if (form.controls.imagen.value) {
+        <img [src]="form.controls.imagen.value" alt="Vista previa" class="imagen-preview">
       }
-    </mat-form-field>
+      <input #archivo type="file" accept="image/*" hidden (change)="elegirImagen($event)">
+      <button type="button" class="btn btn-borde" (click)="archivo.click()" [disabled]="subiendoImagen()">
+        {{ subiendoImagen() ? 'Subiendo...' : (form.controls.imagen.value ? 'Cambiar foto' : 'Subir foto') }}
+      </button>
+      @if (form.controls.imagen.touched && form.controls.imagen.hasError('required')) {
+        <p class="imagen-error">La imagen es obligatoria</p>
+      }
+    </div>
 
     <mat-form-field appearance="outline">
       <mat-label>Descripción</mat-label>
@@ -75,7 +80,7 @@
 
     <div class="form-acciones">
       <a routerLink="/admin" class="btn btn-borde">Cancelar</a>
-      <button type="submit" class="btn" [disabled]="guardando()">
+      <button type="submit" class="btn" [disabled]="guardando() || subiendoImagen()">
         {{ guardando() ? 'Guardando...' : 'Guardar' }}
       </button>
     </div>
