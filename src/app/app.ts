@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { Router, RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router';
 import { CarritoService } from './shared/services/carrito';
 import { AuthService } from './shared/services/auth';
@@ -17,7 +17,10 @@ export class App {
   favoritosService = inject(FavoritosService);
   private router = inject(Router);
 
+  menuAbierto = signal(false);
+
   cerrarSesion() {
+    this.menuAbierto.set(false);
     this.authService.logout();
     this.router.navigate(['/principal']);
   }

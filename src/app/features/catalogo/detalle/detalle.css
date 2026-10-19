@@ -160,9 +160,15 @@
   }
 }
 
+.detalle-info .btn {
+  width: 100%;
+  max-width: 320px;
+}
+
 .detalle-favorito {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 8px;
   margin-top: 10px;
 }

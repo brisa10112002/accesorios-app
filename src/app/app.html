@@ -20,18 +20,44 @@
 
   <div class="nav-derecha">
     @if (authService.estaLogueado()) {
-      <span class="nav-usuario">Hola, {{ authService.usuario()?.nombre }}</span>
-      <button class="nav-salir" (click)="cerrarSesion()">Cerrar sesión</button>
+      <div class="cuenta">
+        <button class="nav-icono" (click)="menuAbierto.set(!menuAbierto())" [attr.aria-expanded]="menuAbierto()" aria-label="Mi cuenta">
+          <span class="material-icons" aria-hidden="true">person_outline</span>
+          <span class="nav-icono-texto">{{ authService.usuario()?.nombre }}</span>
+        </button>
+
+        @if (menuAbierto()) {
+          <div class="cuenta-fondo" (click)="menuAbierto.set(false)"></div>
+          <div class="cuenta-menu">
+            <p class="cuenta-saludo">Hola, {{ authService.usuario()?.nombre }}</p>
+            @if (authService.getRol() === 'admin') {
+              <a routerLink="/admin" (click)="menuAbierto.set(false)">Panel de admin</a>
+            }
+            <a routerLink="/favoritos" (click)="menuAbierto.set(false)">Mis favoritos</a>
+            <a routerLink="/carrito" (click)="menuAbierto.set(false)">Mi carrito</a>
+            <button (click)="cerrarSesion()">Cerrar sesión</button>
+          </div>
+        }
+      </div>
     } @else {
-      <a routerLink="/login" routerLinkActive="activo">Iniciar sesión</a>
+      <a routerLink="/login" class="nav-icono" aria-label="Iniciar sesión">
+        <span class="material-icons" aria-hidden="true">person_outline</span>
+        <span class="nav-icono-texto">Ingresar</span>
+      </a>
     }
-    <a routerLink="/favoritos" routerLinkActive="activo" class="nav-carrito">
+
+    <a routerLink="/favoritos" class="nav-icono" [attr.aria-label]="'Favoritos: ' + favoritosService.cantidad()">
       <span class="material-icons" aria-hidden="true">favorite_border</span>
-      Favoritos ({{ favoritosService.cantidad() }})
+      @if (favoritosService.cantidad() > 0) {
+        <span class="nav-contador">{{ favoritosService.cantidad() }}</span>
+      }
     </a>
-    <a routerLink="/carrito" routerLinkActive="activo" class="nav-carrito">
+
+    <a routerLink="/carrito" class="nav-icono" [attr.aria-label]="'Carrito: ' + carritoService.cantidadTotal()">
       <span class="material-icons" aria-hidden="true">shopping_bag</span>
-      Carrito ({{ carritoService.cantidadTotal() }})
+      @if (carritoService.cantidadTotal() > 0) {
+        <span class="nav-contador">{{ carritoService.cantidadTotal() }}</span>
+      }
     </a>
   </div>
 </nav>
