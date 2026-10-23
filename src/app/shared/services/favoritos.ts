@@ -25,6 +25,10 @@ export class FavoritosService {
     );
   }
 
+  vaciar() {
+    this.ids.set([]);
+  }
+
   private leerFavoritos(): string[] {
     const datos = localStorage.getItem(this.clave);
     return datos ? JSON.parse(datos) : [];

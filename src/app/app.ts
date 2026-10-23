@@ -21,6 +21,8 @@ export class App {
 
   cerrarSesion() {
     this.menuAbierto.set(false);
+    this.carritoService.vaciar();
+    this.favoritosService.vaciar();
     this.authService.logout();
     this.router.navigate(['/principal']);
   }
